@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+        <!--<script type="text/javascript" src="bValidator.js"></script>-->
+        <script type="text/javascript" src="genrateForm.js"></script>
+    </head>
+<body>
+
+<h1>Validator</h1>
+
+<form id="form" style="float:none; margin:auto; top:100px;position: absolute;left:40%; height:auto; width:300px;">
+    <p>NAME : <input type="text" name="name" class="required" /></p>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <p>NAME : <input type="text" name="email" class="required email" /></p>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <p>NAME : <input type="text" name="number" class="required mobile" /></p>
+    <p><input type="submit" /></p>
+</form>
+<script type="application/javascript">
+    $(document).ready(function(){
+        var options = {
+                            //Default Will be popup
+                            "FormStyle"     : "popup",
+                            //Default Will be body
+                            "FormContainer" : "body",
+                            "submitId"      : "submitButton",
+                            "FormName"      : "LeadForm"
+                       },
+            fieldList =  
+            
+            {
+                "name"  :   {
+                                "name"          :   "name",
+                                "type"          :   "text",
+                                "value"         :   "",
+                                "hidden"        :   false,
+                                "placeholder"   :   "Enter the Name",
+                                "class"         :   "required"
+                            },
+                
+                "email" :   {   
+                                "name"          :   "email",
+                                "type"          :   "email",
+                                "value"          :   "",
+                                "hidden"        :   false,
+                                "placeholder"   :   "Enter the Email",
+                                "class"         :   "required email"
+                            },
+                "phone_number" :  {
+                                "name"          :   "phone_number",
+                                "type"          :   "text",
+                                "value"          :   "",
+                                "hidden"        :   false,
+                                "class"         :   "required number",
+                                "placeholder"   :   "Enter the Number",
+                                "country" :  {
+                                            "name"          :   "country_code",
+                                            "type"          :   "select",
+                                            "value"          :   "",
+                                            "data"          :   "countryList",
+                                            "hidden"        :   false,
+                                            "class"         :   "required"
+                                        }
+                            },
+                
+                "telcoCircle" :  {
+                                "name"          :   "telco_circle",
+                                "type"          :   "select",
+                                "value"          :   "",
+                                "data"          :   "countryList",
+                                "class"         :   "required"
+                                
+                            }
+            };
+            
+            
+        
+        
+        $(document).generateForm(options,fieldList);
+        $('#LeadForm').submit(function(){
+            $('#LeadForm').BValidate({"defaultBackGroundColor":"#000"});
+            return false;
+        });
+    });
+</script>
+    <style>
+    .form-overlay{
+        position:fixed; 
+        top:0; 
+        left:0; 
+        background:rgba(0,0,0,0.6); 
+        z-index:5; width:100%; height:100%; 
+    } 
+    .form-content { 
+        float:none;
+        width:350px; 
+        margin:auto; 
+        background-color:#FFF; 
+        padding:20px; 
+        margin-top:150px; 
+        border:5px solid #ccc;
+        box-shadow: 0px 0px 20px 1px;
+        border-radius:5px; 
+        min-height:250px; 
+    } 
+    .form-content form{
+        float:left; 
+        width:100%;
+    }
+    .form-content form .fieldinfo{ 
+        float:left; 
+        margin:5px auto 5px; 
+        width:100%;   
+    }
+    .form-content form input { 
+        padding: 2.5%; 
+        width: 93%; 
+    } 
+    .form-content form select[name='country_code']{ 
+        padding:8px; 
+        width: 30%; 
+    } 
+    .form-content form input[name='phone_number']{ 
+        width: 60%; 
+        margin-left:3%; 
+    } 
+    .form-content form select{ 
+        width:100%; 
+        padding:8px;  
+    } 
+    .form-content input.err{
+        border: 2px solid #F00;
+    }
+    .country_container{
+        float: left;
+        width: 30%;
+    }
+    .data-list {
+    }
+    .data-list ul{ 
+        float:left;
+        max-height:200px; 
+        overflow:auto; 
+        display: none;
+        position: absolute;
+        background: #fff;
+        margin-top: 0px;
+        min-width: 300px;
+        border: 1px solid #ccc;
+        padding: 0px;
+    }
+    .data-list input[name=country_code]{
+        padding: 9px;
+        width: 87%;
+    }
+    .data-list ul li{
+        list-style: none;
+        padding: 2px;
+        padding-left: 10px;
+        cursor: pointer;
+    }
+    .data-list ul li:hover{
+        background: #E5E5E5;
+    }
+    .err-container{
+        position: absolute;
+        z-index: 1000;
+       
+    }
+    .err-container .err-content{
+        float: left;
+        padding: 6px;
+        display: inline-block;
+        font-family: Arial;
+        border-radius: 0px 5px 5px 0px;
+        border: 2px solid #F00;
+        font-size: 12px;
+        background-color: #FFDCDC;
+        cursor: pointer;
+    }
+    .arrow-left{
+        float: left;
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        top: 1px;
+        border-right: 5px solid #F00;
+    }
+    </style>
+</body>
+</html>
